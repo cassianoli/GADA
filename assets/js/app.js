@@ -37,11 +37,39 @@ async function init() {
   render();
 }
 
-// Resolve a URL alvo: prefere driveUrl, senao filePath (URL-encoded).
+// Encoda cada segmento do path preservando as barras.
+function encodePath(p) {
+  return p.split('/').map(encodeURIComponent).join('/');
+}
+
+// URL absoluta do arquivo a partir do filePath relativo.
+function absoluteFileUrl(filePath) {
+  const base = location.origin + location.pathname.replace(/\/[^\/]*$/, '/');
+  return base + encodePath(filePath);
+}
+
+// Resolve a URL final para abrir o arquivo:
+// - driveUrl tem prioridade absoluta
+// - local (file://) abre direto
+// - http(s): docx/xlsx/pptx -> Office Online viewer; ipynb -> nbviewer; resto direto
 function resolveUrl(d) {
   if (d.driveUrl) return d.driveUrl;
-  if (d.filePath) return encodeURI(d.filePath);
-  return '';
+  if (!d.filePath) return '';
+
+  const ext = d.filePath.split('.').pop().toLowerCase();
+
+  if (location.protocol === 'file:') {
+    return encodePath(d.filePath);
+  }
+
+  const abs = absoluteFileUrl(d.filePath);
+  if (['docx','xlsx','pptx','doc','xls','ppt'].includes(ext)) {
+    return 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(abs);
+  }
+  if (ext === 'ipynb') {
+    return 'https://nbviewer.org/url/' + abs.replace(/^https?:\/\//, '');
+  }
+  return abs;
 }
 
 function showLoadError(err) {
