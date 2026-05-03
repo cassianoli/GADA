@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Advanced Data Analytics — Portfolio Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Google Advanced Data Analytics Portfolio Dashboard</h1>
+      <p class="subtitle">End-to-end portfolio projects across Automatidata, TikTok and Waze</p>
+      <p class="lede">
+        Painel pessoal de estudo e portfolio profissional. Organiza os 7 cursos do certificado,
+        os 3 cenarios de capstone, entregaveis, status de progresso e evidencias de aprendizagem.
+        Clique no badge de status para abrir o documento no Google Drive.
+      </p>
+
+      <div class="kpis" id="kpis" aria-label="Indicadores de progresso">
+        <!-- preenchido por JS -->
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ============ FILTROS ============ -->
+    <section class="filters" aria-label="Filtros">
+      <div class="filter-row">
+        <label class="filter-label">Cenario</label>
+        <div class="chip-group" id="filter-scenario" role="group">
+          <button class="chip active" data-filter="scenario" data-value="all">All</button>
+          <button class="chip" data-filter="scenario" data-value="automatidata">Automatidata</button>
+          <button class="chip" data-filter="scenario" data-value="tiktok">TikTok</button>
+          <button class="chip" data-filter="scenario" data-value="waze">Waze</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <label class="filter-label">Status</label>
+        <div class="chip-group" id="filter-status" role="group">
+          <button class="chip active" data-filter="status" data-value="all">All</button>
+          <button class="chip" data-filter="status" data-value="completed">Completed</button>
+          <button class="chip" data-filter="status" data-value="in-progress">In Progress</button>
+          <button class="chip" data-filter="status" data-value="pending">Pending</button>
+          <button class="chip" data-filter="status" data-value="review">Review</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <label class="filter-label">Curso</label>
+        <div class="chip-group" id="filter-course" role="group">
+          <button class="chip active" data-filter="course" data-value="all">All</button>
+          <button class="chip" data-filter="course" data-value="1">C1</button>
+          <button class="chip" data-filter="course" data-value="2">C2</button>
+          <button class="chip" data-filter="course" data-value="3">C3</button>
+          <button class="chip" data-filter="course" data-value="4">C4</button>
+          <button class="chip" data-filter="course" data-value="5">C5</button>
+          <button class="chip" data-filter="course" data-value="6">C6</button>
+          <button class="chip" data-filter="course" data-value="7">C7</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <label class="filter-label" for="search">Busca</label>
+        <input id="search" type="search" placeholder="Buscar por titulo, ferramenta, tipo..." />
+      </div>
+    </section>
+
+    <!-- ============ VISAO POR CENARIO ============ -->
+    <section class="section" aria-label="Visao por cenario">
+      <div class="section-head">
+        <h2>Scenarios</h2>
+        <p>Tres cenarios em paralelo, cada um com Course 1 a Course 7.</p>
+      </div>
+      <div class="scenarios-grid" id="scenarios-grid">
+        <!-- preenchido por JS -->
+      </div>
+    </section>
+
+    <p class="empty-global hidden" id="empty-global">
+      Nenhum entregavel corresponde aos filtros atuais.
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Cassiano Uerj — Google Advanced Data Analytics Professional Certificate</p>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal hidden" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card" role="document">
+      <button class="modal-close" data-close-modal aria-label="Fechar">&times;</button>
+      <header class="modal-header">
+        <span class="modal-eyebrow" id="modal-eyebrow"></span>
+        <h3 id="modal-title"></h3>
+        <div class="modal-badges" id="modal-badges"></div>
+      </header>
+      <div class="modal-body" id="modal-body">
+        <!-- preenchido por JS -->
+      </div>
+      <footer class="modal-footer">
+        <a class="btn btn-primary" id="modal-open" href="#" target="_blank" rel="noopener">Open file on Drive</a>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
